@@ -1,0 +1,36 @@
+#This script is to take multiple time slots as input and calculate total time. Specially for movies and medium videos
+import datetime as dt
+
+today_time = dt.datetime.now()
+print("Hello, the current time is", today_time,".\nWelcome to the time slot calculator")
+
+def Takeyourtime():
+
+    time1 = input("Enter first time slot in HH:MM:SS format:\t")
+    hour1, min1, sec1 = [int(i) for i in time1.split(":")]
+    print("It is", hour1, "hours,", min1, "minutes and", sec1, "seconds.")
+
+    time2 = input("Enter second time slot in HH:MM:SS format:\t")
+    hour2, min2, sec2 = [int(i) for i in time2.split(":")]
+    print("It is", hour2, "hours,", min2, "minutes and", sec2, "seconds.")
+
+    t1 = dt.timedelta(hours= hour1, minutes= min1, seconds= sec1)
+    t2 = dt.timedelta(hours= hour2, minutes= min2, seconds= sec2)
+
+    return t1,t2,hour1,hour2
+
+timelength1 , timelength2, hours1, hours2 = Takeyourtime()
+
+while(hours1 > 11 or hours2 > 11):
+    print("Error in either of the time slots. Please enter the timeslots again.")
+    timelength1 , timelength2, hours1, hours2 = Takeyourtime()
+    if(hours1 > 11 or hours2 > 11):
+        continue
+    else:
+        break
+
+timelength3 = str(timelength1 + timelength2)
+hours3, mins3, secs3 = [int(i) for i in timelength3.split(":")]
+print("\nTotal time is", hours3, "hours,", mins3, "minutes and", secs3, "seconds.")
+
+
