@@ -1,0 +1,28 @@
+#This program is to calculate time for N no of slots that the user wants. It can be used to add the time remaining or total time for multiple videos being watched.
+import datetime as dt
+
+today_time = dt.datetime.now()
+print("Hello, the current time is", today_time,".\nWelcome to the time slot calculator")
+
+number_TimeSlots = eval(input("Enter the number of time slots you want to add: "))
+print("You chose to calculate time for",number_TimeSlots, "number of slots.")
+
+tH,tM,tS = 0,0,0
+for j in range (0,number_TimeSlots):
+    time_Slots = input("Enter the timings of the video in HH:MM:SS format:\t")
+    def slot(time_Slots):
+        hour, min, sec = [int(i) for i in time_Slots.split(":")]
+        print("It is", hour, "hours,", min, "minutes and", sec, "seconds.")
+        return hour, min, sec
+    newTime = slot(time_Slots)
+    tH = newTime[0] + tH
+    tM = newTime[1] + tM
+    tS = newTime[2] + tS
+
+if tS >= 60:
+    tM = tM + (tS//60)
+    tS = (tS%60)
+if tM >= 60:
+    tH = tH + (tM//60)
+    tM = (tM%60)
+print("The total time is ",tH, "hours", tM, "minutes", "and", tS, "seconds")
